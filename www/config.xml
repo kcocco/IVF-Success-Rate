@@ -3,7 +3,7 @@
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.kcocco.sproutloop"
         version   = "0.1">
-    <name>local DB test app</name>
+    <name>IVF Success Rate</name>
 
     <description>
         Local Database test app

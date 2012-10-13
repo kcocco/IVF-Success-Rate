@@ -26,6 +26,9 @@ ApplicationController.prototype.init = function() {
 
 ApplicationController.prototype.loadDatabase = function() {
 	var dbSize = 1 * 1024 * 1024; // 1MB
+	// Wait for PhoneGap to load
+	document.addEventListener("deviceready", onDeviceReady, false);
+	
 	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
     if (this.dbCreated){
 		//alert ("this.dbcreated = yes");
@@ -40,7 +43,7 @@ function transaction_error(tx, error) {
 
 function populateDB_success() {
 	this.dbCreated = true;
-	// alert("db created!");
+	alert("db created!");
     db.transaction(loadStates, transaction_error);
 }
 
