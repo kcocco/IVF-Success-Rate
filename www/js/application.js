@@ -25,10 +25,11 @@ ApplicationController.prototype.init = function() {
 }
 
 ApplicationController.prototype.loadDatabase = function() {
-	var dbSize = 1 * 1024 * 1024; // 1MB
+	
 	// Wait for PhoneGap to load
 	document.addEventListener("deviceready", onDeviceReady, false);
 	
+	var dbSize = 2 * 1024 * 1024; // 2MB
 	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
     if (this.dbCreated){
 		//alert ("this.dbcreated = yes");
