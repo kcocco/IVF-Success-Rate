@@ -31,9 +31,9 @@ ApplicationController.prototype.loadDatabase = function() {
 	var dbSize = 2 * 1024 * 1024; // 2MB
 	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
     if (this.dbCreated){
-		//alert ("this.dbcreated = yes");
-    	db.transaction(loadSTATES, transaction_error);}
+    	db.transaction(loadStates, transaction_error);}
     else
+		alert("calling populate db");
     	db.transaction(populateDB, transaction_error, populateDB_success);
 }
 
