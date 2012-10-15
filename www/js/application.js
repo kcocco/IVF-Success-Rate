@@ -22,30 +22,30 @@ function ApplicationController() {
 
 ApplicationController.prototype.init = function() {
 	// Wait for PhoneGap to load
-	alert("checking for deviceready");
+	// alert("checking for deviceready");
 	document.addEventListener("deviceready", this.loadDatabase(), false);
 }
 
 ApplicationController.prototype.loadDatabase = function() {
-	alert("start db load process");
+	// alert("start db load process");
 		
 	var dbSize = 2 * 1024 * 1024; // 2MB
 	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
-	alert(db);
+	// alert(db);
     if (this.dbCreated){
     	db.transaction(loadStates, transaction_error);}
     else
-		alert("calling populate db");
+		// alert("calling populate db");
     	db.transaction(populateDB, transaction_error, populateDB_success);
 }
 
 function transaction_error(tx, error) {
-    alert("Local Database Error: " + error);
+    // alert("Local Database Error: " + error);
 }
 
 function populateDB_success() {
 	this.dbCreated = true;
-	alert("db created!");
+	// alert("db created!");
     db.transaction(loadStates, transaction_error);
 }
 
