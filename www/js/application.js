@@ -22,17 +22,12 @@ function ApplicationController() {
 
 ApplicationController.prototype.init = function() {
 	// Wait for PhoneGap to load
+	alert("checking for deviceready");
 	document.addEventListener("deviceready", this.loadDatabase(), false);
 }
 
 ApplicationController.prototype.loadDatabase = function() {
 	alert("start db load process");
-	
-	// from: http://stackoverflow.com/questions/12076356/android-4-0-3-window-opendatabase-doesnt-work
-	if (!window.openDatabase)
-	    alert("Error: can't open local database");
-	if (!localStorage)
-	    alert("Error: localstorage not usable");
 		
 	var dbSize = 2 * 1024 * 1024; // 2MB
 	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
