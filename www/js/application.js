@@ -27,9 +27,15 @@ ApplicationController.prototype.init = function() {
 
 ApplicationController.prototype.loadDatabase = function() {
 	alert("start db load process");
+	
+	// from: http://stackoverflow.com/questions/12076356/android-4-0-3-window-opendatabase-doesnt-work
+	if (!window.openDatabase)
+	    alert("Error: can't open local database");
+	if (!localStorage)
+	    alert("Error: localstorage not usable");
 		
-	// var dbSize = 2 * 1024 * 1024; // 2MB
-	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", 200000);
+	var dbSize = 2 * 1024 * 1024; // 2MB
+	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
 	alert(db);
     if (this.dbCreated){
     	db.transaction(loadStates, transaction_error);}
@@ -383,6 +389,8 @@ function populateDB(tx) {
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (19,"CALIFORNIA","AGOURA HILLS","LifeStart Fertility Center","5 / 8")');
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (20,"CALIFORNIA","BERKELEY","Alta Bates In Vitro Fertilization Program","4 / 11")');
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (21,"CALIFORNIA","BEVERLY HILLS","California Center for Reproductive Health  Beverly Hills Reproductive Fertility Center","50.0")');
+}
+/*
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (22,"CALIFORNIA","BEVERLY HILLS","Center for Reproductive Health & Gynecology  (CRH&G)","61.9")');
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (23,"CALIFORNIA","BEVERLY HILLS","Southern California Reproductive Center","50.0")');
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (24,"CALIFORNIA","BEVERLY HILLS","This clinic has closed or reorganized since 2010.  Information on current clinic services and profile therefore is not provided here.  Contact the NASS Help Desk for current information about this clinic.",null)');
@@ -806,7 +814,7 @@ function populateDB(tx) {
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (442,"WISCONSIN","WAUKESHA","This clinic has closed or reorganized since 2010.  Information on current clinic services and profile therefore is not provided here.  Contact the NASS Help Desk for current information about this clinic.","0 / 3")');
 	tx.executeSql('INSERT INTO IVF (OrderID, ClinStateCode, ClinCityCode, CurrClinNameAll,FshNDLvBirthsRate1) VALUES (443,"WISCONSIN","WEST ALLIS","Aurora Health Care-Aurora Fertility Services  West Allis","48.1")');
 }
-
+*/
 
 
 var controller = new ApplicationController();
