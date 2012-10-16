@@ -30,7 +30,7 @@ ApplicationController.prototype.init = function() {
 
 //ApplicationController.prototype.loadDatabase = function() {
 function loadDatabase() {
-	// alert("start db load process");
+	alert("start db load process");
 	var dbSize = 2 * 1024 * 1024; // 2MB
 	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
     alert(db);
