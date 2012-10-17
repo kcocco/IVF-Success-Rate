@@ -29,17 +29,48 @@ ApplicationController.prototype.init = function() {
 }
 
 //ApplicationController.prototype.loadDatabase = function() {
+
+function loadDatabase() {
+	alert("start db load process");
+    // nice layout for openDatabase from: http://developer.apple.com/library/safari/#documentation/iPhone/Conceptual/SafariJSDatabaseGuide/UsingtheJavascriptDatabase/UsingtheJavascriptDatabase.html
+	try {
+	    if (!window.openDatabase) {
+	        alert('window.openDatabase - not supported');
+	    } else {
+	        var shortName = 'IVFdata';
+	        var version = '1.0';
+	        var displayName = 'PhoneGap Demo';
+	        var maxSize = 1024 * 1024; // 1MB ... in bytes
+			// Note var db at head of code
+	        db = openDatabase(shortName, version, displayName, maxSize);
+			alert(db); // You should have a database instance in db.
+			db.transaction(populateDB, transaction_error, populateDB_success);
+	    }
+	} catch(e) {
+	    // Error handling code goes here.
+	    if (e == 2) {
+	        // Version number mismatch.
+	        alert("Invalid database version.");
+	    } else {
+	        alert("Unknown error "+e+".");
+	    }
+	    return;
+	}   
+}
+
+/*
 function loadDatabase() {
 	alert("start db load process");
 	var dbSize = 2 * 1024 * 1024; // 2MB
 	db = window.openDatabase("IVFdata", "1.0", "PhoneGap Demo", dbSize);
     alert(db);
-/*    if (this.dbCreated){
-    	db.transaction(loadStates, transaction_error);}
-    else
-		// alert("calling populate db"); */
+//    if (this.dbCreated){
+//    	db.transaction(loadStates, transaction_error);}
+//  else
+		// alert("calling populate db"); 
     	db.transaction(populateDB, transaction_error, populateDB_success);
 }
+*/
 
 function transaction_error(tx, error) {
     // alert("Local Database Error: " + error);
